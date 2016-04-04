@@ -32,7 +32,7 @@ var App = React.createClass({
 		});
 	},
 	renderFish : function(key){
-		return <li>Welcome {key}</li>
+		return <Fish key={key} index={key} details={this.state.fishes[key]} />
 	},
 	render : function() {
 		return (
@@ -46,6 +46,24 @@ var App = React.createClass({
 				<Order />
 				<Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
 			</div>
+		)
+	}
+});
+
+//Fish
+//<Fish />
+var Fish = React.createClass({
+	render : function() {
+		var details = this.props.details;
+		return (
+			<li className="menu-fish">
+				<img src={this.props.details.image} alt="" />
+				<h3 className="fish-name">
+					{details.name}
+					<span className="price">{h.formatPrice(details.price)}</span>
+				</h3>
+				<p>{details.desc}</p>
+			</li>
 		)
 	}
 });
